@@ -118,4 +118,4 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export SPICETIFY_INSTALL="/home/steven/spicetify-cli"
 export PATH="$SPICETIFY_INSTALL:$PATH"
 
-alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

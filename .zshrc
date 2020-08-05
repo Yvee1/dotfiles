@@ -108,12 +108,14 @@ _fasd_preexec() {
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec _fasd_preexec
 
-export DISPLAY=:0
-export XDG_RUNTIME_DIR=~/xdg_runtime
-export RUNLEVEL=3
-
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -e /home/steven/.nix-profile/etc/profile.d/nix.sh ]; then . /home/steven/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+export SPICETIFY_INSTALL="/home/steven/spicetify-cli"
+export PATH="$SPICETIFY_INSTALL:$PATH"
+
+alias config='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'

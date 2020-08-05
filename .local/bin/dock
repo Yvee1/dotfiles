@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+for m in $(polybar --list-monitors | cut -d":" -f1); do
+    
+    # Wait until the control has started
+    MONITOR=$m SHELL=$(which sh) polybar level &
+    MONITOR=$m SHELL=$(which sh) polybar control &
+    MONITOR=$m SHELL=$(which sh) polybar workspace &
+    MONITOR=$m SHELL=$(which sh) pgrep spotify && SHELL=$(which sh) polybar player &
+    MONITOR=$m SHELL=$(which sh) polybar open &
+    MONITOR=$m SHELL=$(which sh) polybar status &
+    MONITOR=$m SHELL=$(which sh) polybar power &
+done
+
+while [ -z "$(find /tmp -maxdepth 1 -name "polybar*")" ]; do sleep 1; done

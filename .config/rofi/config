@@ -1,0 +1,4 @@
+rofi.combi-modi:	window,run,drun
+rofi.theme:		onedark
+rofi.font:		Ioveska 13
+rofi.modi:		combi
